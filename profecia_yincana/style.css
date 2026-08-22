@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* La página funciona sin Internet. Esta fuente es un extra visual:
+   si estás completamente offline, el navegador usará la fuente de respaldo. */
+
+:root {
+  --bg: #050505;
+  --text: #f4f4f4;
+  --muted: #9b9b9b;
+  --gold: #d8b56b;
+  --paper: #d9c58d;
+  --paper-dark: #8d7040;
+  --ink: #20170d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Courier New", monospace;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background-image:
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #aaa 1px, transparent 1px);
+  background-size: 73px 73px, 113px 113px;
+  background-position: 0 0, 31px 47px;
+  animation: drift 18s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(73px); }
+}
+
+.app {
+  position: relative;
+  min-height: 100svh;
+}
+
+.screen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.intro-box {
+  width: min(720px, 100%);
+  text-align: center;
+  animation: appear .9s ease-out;
+}
+
+.small-label,
+.eyebrow {
+  letter-spacing: 3px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.intro-box h1 {
+  margin: 28px 0;
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: clamp(25px, 7vw, 58px);
+  line-height: 1.55;
+  text-shadow: 4px 4px 0 #333;
+}
+
+.question {
+  margin: 25px 0;
+  letter-spacing: 2px;
+}
+
+.choices {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.choice {
+  min-width: 140px;
+  padding: 18px 28px;
+  color: white;
+  background: #090909;
+  border: 2px solid white;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: .15s ease;
+}
+
+.choice:hover,
+.choice:focus-visible {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+  outline: none;
+  box-shadow: 5px 5px 0 #555;
+}
+
+.choice:active {
+  transform: translateY(2px);
+}
+
+.prophecy-page {
+  width: min(900px, 100%);
+  min-height: 90svh;
+  padding: 28px clamp(18px, 5vw, 55px);
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(50,25,0,.12), transparent 9%, transparent 91%, rgba(50,25,0,.12)),
+    repeating-linear-gradient(0deg, rgba(70,40,0,.025) 0 2px, transparent 2px 5px),
+    var(--paper);
+  border: 8px double var(--paper-dark);
+  box-shadow:
+    0 0 0 4px #342511,
+    0 20px 80px rgba(0,0,0,.8),
+    inset 0 0 50px rgba(60,30,0,.25);
+  position: relative;
+}
+
+.prophecy-page::before,
+.prophecy-page::after {
+  content: "";
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  height: 13px;
+  background: #a88750;
+  border: 3px solid #60461f;
+  box-shadow: inset 0 0 8px rgba(0,0,0,.45);
+}
+
+.prophecy-page::before { top: -13px; }
+.prophecy-page::after { bottom: -13px; }
+
+.ornament {
+  text-align: center;
+  color: #765b2c;
+  font-size: 18px;
+  margin: 8px 0 18px;
+}
+
+.prophecy-page h2 {
+  text-align: center;
+  margin: 8px 0 25px;
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 8vw, 58px);
+  letter-spacing: 4px;
+}
+
+.scroll-text {
+  max-height: 55svh;
+  overflow-y: auto;
+  padding: 4px 10px 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 2.3vw, 20px);
+  line-height: 1.75;
+  scrollbar-color: #765b2c #c5ac75;
+}
+
+.scroll-text p {
+  margin: 0 0 1.35em;
+}
+
+.scroll-text strong {
+  font-weight: 800;
+}
+
+.reveal-line {
+  text-align: center;
+  font-size: 1.12em;
+}
+
+.final-prophecy {
+  text-align: center;
+  font-size: 1.2em;
+  padding: 18px;
+  border-top: 2px solid #765b2c;
+  border-bottom: 2px solid #765b2c;
+}
+
+.ending-stack,
+.question-prophecy {
+  text-align: center;
+}
+
+.question-prophecy {
+  font-style: italic;
+  font-size: 1.08em;
+}
+
+.countdown-wrap {
+  text-align: center;
+  margin-top: 25px;
+  padding: 18px 10px;
+  border-top: 2px solid #765b2c;
+  font-family: "Courier New", monospace;
+}
+
+.countdown-wrap p {
+  margin: 0 0 10px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.countdown {
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: clamp(13px, 4vw, 25px);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.countdown-wrap small {
+  display: block;
+  margin-top: 8px;
+}
+
+.chaos {
+  width: min(800px, 100%);
+  text-align: center;
+  animation: chaosIn .25s steps(2, end);
+}
+
+.warning {
+  color: #777;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.chaos h2 {
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: clamp(23px, 6vw, 52px);
+  line-height: 1.7;
+  text-shadow: 4px 0 #444, -4px 0 #222;
+}
+
+.chaos p {
+  font-size: clamp(17px, 4vw, 26px);
+  font-weight: bold;
+  letter-spacing: 2px;
+  animation: flicker 1.2s infinite;
+}
+
+.chaos-symbol {
+  font-size: 70px;
+  margin: 35px 0;
+}
+
+.small-button {
+  background: transparent;
+  color: #777;
+  border: 1px solid #555;
+  padding: 10px 18px;
+  cursor: pointer;
+}
+
+.small-button:hover {
+  color: white;
+  border-color: white;
+}
+
+.glitch {
+  animation: glitch .15s steps(2) 4;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes chaosIn {
+  0% { opacity: 0; transform: scale(1.08); filter: blur(4px); }
+  50% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+  100% { opacity: 1; transform: scale(1); filter: none; }
+}
+
+@keyframes flicker {
+  0%, 18%, 20%, 63%, 65%, 100% { opacity: 1; }
+  19%, 64% { opacity: .15; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(-8px, 2px); filter: contrast(2); }
+  50% { transform: translate(7px, -2px); filter: invert(.2); }
+  75% { transform: translate(-3px, 0); }
+  100% { transform: translate(0); filter: none; }
+}
+
+@media (max-width: 600px) {
+  .screen {
+    padding: 16px;
+  }
+
+  .prophecy-page {
+    min-height: 94svh;
+    padding: 22px 14px;
+    border-width: 5px;
+  }
+
+  .scroll-text {
+    max-height: 56svh;
+    padding: 0 5px 16px;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .choices {
+    gap: 12px;
+  }
+
+  .choice {
+    min-width: 120px;
+  }
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.password-input {
+  width: min(420px, 100%);
+  padding: 16px 18px;
+  color: white;
+  background: #090909;
+  border: 2px solid white;
+  font: inherit;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.password-input:focus {
+  outline: none;
+  box-shadow: 5px 5px 0 #555;
+}
+
+.password-error {
+  margin: 20px 0 0;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
